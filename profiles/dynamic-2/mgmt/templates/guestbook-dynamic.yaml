@@ -16,6 +16,6 @@ spec:
     namespace: default
   project: default
   source:
-    repoURL: https://github.com/ShaunakJoshi1407/worskpace
+    repoURL: https://github.com/ShaunakJoshi1407/arlon-demo
     path: bundles/guestbook
     targetRevision: HEAD
