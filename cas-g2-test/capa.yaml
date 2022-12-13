@@ -75,7 +75,7 @@ metadata:
     cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "9"
 spec:
   clusterName: aws-example
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels: null
   template:
