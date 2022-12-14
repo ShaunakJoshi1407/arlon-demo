@@ -1,0 +1,5 @@
+resources:
+- new.yaml
+
+configurations:
+- configurations.yaml
