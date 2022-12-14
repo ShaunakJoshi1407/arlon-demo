@@ -1,0 +1,5 @@
+resources:
+- e2e.yaml
+
+configurations:
+- configurations.yaml
