@@ -1,5 +1,0 @@
-resources:
-- capd.yaml
-
-configurations:
-- configurations.yaml
