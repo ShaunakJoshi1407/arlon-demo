@@ -61,7 +61,7 @@ metadata:
 spec:
   template:
     spec:
-      iamInstanceProfile: nodes.cluster-api-provider-aws.sigs.k8s.io
+      iamInstanceProfile: arlon-nodes.cluster-api-provider-aws.sigs.k8s.io
       instanceType: t2.medium
       sshKeyName: rrajak
 ---
