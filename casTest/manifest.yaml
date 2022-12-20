@@ -2,7 +2,6 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   name: capi-quickstart-eks
-  namespace: default
 spec:
   clusterNetwork:
     pods:
@@ -21,7 +20,6 @@ apiVersion: controlplane.cluster.x-k8s.io/v1beta1
 kind: AWSManagedControlPlane
 metadata:
   name: capi-quickstart-eks-control-plane
-  namespace: default
 spec:
   region: us-east-1
   sshKeyName: integ-test-arlon
@@ -30,8 +28,10 @@ spec:
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
+  annotations:
+    cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "9"
+    cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "1"
   name: capi-quickstart-eks-md-0
-  namespace: default
 spec:
   clusterName: capi-quickstart-eks
   replicas: 2
@@ -55,7 +55,6 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: AWSMachineTemplate
 metadata:
   name: capi-quickstart-eks-md-0
-  namespace: default
 spec:
   template:
     spec:
@@ -67,6 +66,5 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: EKSConfigTemplate
 metadata:
   name: capi-quickstart-eks-md-0
-  namespace: default
 spec:
   template: {}
