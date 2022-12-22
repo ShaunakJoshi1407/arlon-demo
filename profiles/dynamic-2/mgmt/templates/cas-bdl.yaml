@@ -16,7 +16,7 @@ spec:
     namespace: default
   project: default
   source:
-    repoURL: https://github.com/platform9/arlon.git
+    repoURL: https://github.com/arlonproj/arlon.git
     path: bundles/capi-cluster-autoscaler
     targetRevision: HEAD
     helm:
