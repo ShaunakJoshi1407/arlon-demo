@@ -52,7 +52,7 @@ spec:
       apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
       kind: AWSMachineTemplate
       name: capi-quickstart-control-plane
-  replicas: 3
+  replicas: 1
   version: v1.25.3
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
@@ -75,7 +75,7 @@ metadata:
   name: capi-quickstart-md-0
 spec:
   clusterName: capi-quickstart
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels: null
   template:
