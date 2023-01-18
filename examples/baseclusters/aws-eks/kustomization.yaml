@@ -1,5 +1,0 @@
-resources:
-- capa-eks.yaml
-
-configurations:
-- configurations.yaml
