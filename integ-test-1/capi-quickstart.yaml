@@ -1,8 +1,7 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  name: capi-quickstart 
-  namespace: default
+  name: capi-quickstart
 spec:
   clusterNetwork:
     pods:
@@ -15,20 +14,18 @@ spec:
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
     kind: AWSManagedCluster
-    name: capi-quickstart 
+    name: capi-quickstart
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: AWSManagedCluster
 metadata:
-  name: capi-quickstart 
-  namespace: default
+  name: capi-quickstart
 spec: {}
 ---
 apiVersion: controlplane.cluster.x-k8s.io/v1beta2
 kind: AWSManagedControlPlane
 metadata:
   name: capi-quickstart-control-plane
-  namespace: default
 spec:
   region: us-east-1
   sshKeyName: integ-test-arlon
@@ -38,17 +35,15 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: AWSManagedMachinePool
 metadata:
   name: capi-quickstart-pool-0
-  namespace: default
-spec: 
+spec:
   scaling:
-     minSize: 0
-     maxSize: 10
+    maxSize: 10
+    minSize: 0
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: AWSMachinePool
 metadata:
   name: capi-quickstart-pool-1
-  namespace: default
 spec:
   awsLaunchTemplate:
     iamInstanceProfile: nodes.cluster-api-provider-aws.sigs.k8s.io
@@ -61,9 +56,8 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachinePool
 metadata:
   name: capi-quickstart-pool-1
-  namespace: default
 spec:
-  clusterName: capi-quickstart 
+  clusterName: capi-quickstart
   replicas: 1
   template:
     spec:
@@ -72,7 +66,7 @@ spec:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta2
           kind: EKSConfig
           name: capi-quickstart-pool-1
-      clusterName: capi-quickstart 
+      clusterName: capi-quickstart
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
         kind: AWSMachinePool
@@ -83,15 +77,14 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachinePool
 metadata:
   name: capi-quickstart-pool-0
-  namespace: default
 spec:
-  clusterName: capi-quickstart 
+  clusterName: capi-quickstart
   replicas: 1
   template:
     spec:
       bootstrap:
         dataSecretName: ""
-      clusterName: capi-quickstart 
+      clusterName: capi-quickstart
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
         kind: AWSManagedMachinePool
@@ -101,16 +94,17 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1beta2
 kind: EKSConfig
 metadata:
   name: capi-quickstart-pool-1
-  namespace: default
 spec: {}
 ---
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
+  annotations:
+    cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "9"
+    cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "1"
   name: capi-quickstart-md-0
-  namespace: default
 spec:
-  clusterName: capi-quickstart 
+  clusterName: capi-quickstart
   replicas: 2
   selector:
     matchLabels: null
@@ -121,7 +115,7 @@ spec:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta2
           kind: EKSConfigTemplate
           name: capi-quickstart-md-0
-      clusterName: capi-quickstart 
+      clusterName: capi-quickstart
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
         kind: AWSMachineTemplate
@@ -132,7 +126,6 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
 kind: AWSMachineTemplate
 metadata:
   name: capi-quickstart-md-0
-  namespace: default
 spec:
   template:
     spec:
@@ -144,6 +137,5 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1beta2
 kind: EKSConfigTemplate
 metadata:
   name: capi-quickstart-md-0
-  namespace: default
 spec:
   template: {}
