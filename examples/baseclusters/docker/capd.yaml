@@ -2,7 +2,6 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: ClusterClass
 metadata:
   name: quick-start
-  namespace: default
 spec:
   controlPlane:
     machineInfrastructure:
@@ -125,8 +124,7 @@ spec:
         kind: DockerMachineTemplate
         matchResources:
           controlPlane: true
-    description: Sets the container image that is used for running dockerMachines
-      for the controlPlane and default-worker machineDeployments.
+    description: Sets the container image that is used for running dockerMachines for the controlPlane and default-worker machineDeployments.
     name: customImage
   - definitions:
     - jsonPatches:
@@ -180,8 +178,7 @@ spec:
     schema:
       openAPIV3Schema:
         default: ""
-        description: imageRepository sets the container registry to pull images from.
-          If empty, nothing will be set and the from of kubeadm will be used.
+        description: imageRepository sets the container registry to pull images from. If empty, nothing will be set and the from of kubeadm will be used.
         example: registry.k8s.io
         type: string
   - name: etcdImageTag
@@ -207,23 +204,19 @@ spec:
         properties:
           audit:
             default: restricted
-            description: audit sets the level for the audit PodSecurityConfiguration
-              mode. One of privileged, baseline, restricted.
+            description: audit sets the level for the audit PodSecurityConfiguration mode. One of privileged, baseline, restricted.
             type: string
           enabled:
             default: true
-            description: enabled enables the patches to enable Pod Security Standard
-              via AdmissionConfiguration.
+            description: enabled enables the patches to enable Pod Security Standard via AdmissionConfiguration.
             type: boolean
           enforce:
             default: baseline
-            description: enforce sets the level for the enforce PodSecurityConfiguration
-              mode. One of privileged, baseline, restricted.
+            description: enforce sets the level for the enforce PodSecurityConfiguration mode. One of privileged, baseline, restricted.
             type: string
           warn:
             default: restricted
-            description: warn sets the level for the warn PodSecurityConfiguration
-              mode. One of privileged, baseline, restricted.
+            description: warn sets the level for the warn PodSecurityConfiguration mode. One of privileged, baseline, restricted.
             type: string
         type: object
   workers:
@@ -245,7 +238,6 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: DockerClusterTemplate
 metadata:
   name: quick-start-cluster
-  namespace: default
 spec:
   template:
     spec: {}
@@ -254,7 +246,6 @@ apiVersion: controlplane.cluster.x-k8s.io/v1beta1
 kind: KubeadmControlPlaneTemplate
 metadata:
   name: quick-start-control-plane
-  namespace: default
 spec:
   template:
     spec:
@@ -284,7 +275,6 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: DockerMachineTemplate
 metadata:
   name: quick-start-control-plane
-  namespace: default
 spec:
   template:
     spec:
@@ -296,7 +286,6 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: DockerMachineTemplate
 metadata:
   name: quick-start-default-worker-machinetemplate
-  namespace: default
 spec:
   template:
     spec:
@@ -308,7 +297,6 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: KubeadmConfigTemplate
 metadata:
   name: quick-start-default-worker-bootstraptemplate
-  namespace: default
 spec:
   template:
     spec:
@@ -322,7 +310,6 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   name: docker-example
-  namespace: default
 spec:
   clusterNetwork:
     pods:
